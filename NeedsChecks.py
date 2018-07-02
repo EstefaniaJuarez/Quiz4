@@ -49,44 +49,46 @@ def dot(vector01,vector02):
     x=0
     #This for loop is taking each  corresponding element, multiplying them, and adding them together for the final integer.
     for i in range(len(vector01)):  
-    if ((type(vector01[i] and vector02[i]) != int) and (type(vector01[i] and vector02[i]) != float) and (type(vector01[i and vector02[i]) != complex)):
-      inputStatus = False
-      print("Invalid Input")
+      if ((type(vector01[i] and vector02[i]) != int) and (type(vector01[i] and vector02[i]) != float) and (type(vector01[i] and vector02[i]) !=complex)):
+        inputStatus = False
+        print("Invalid Input")
   # If the input is valid the function continues to compute the dot product
   if inputStatus == True:
       x += vector01[i]*vector02[i]
-    return x 
+      return x 
   else:
     print("invalid input")
     return None
 
-def vecSubtract(vector,vector):
+def vecSubtract(vector03,vector04):
   '''
   The function vecSubtract takes in two vectors and returns the difference of the two. After the difference of each pair of corresponding elements has been computed, it then takes the number and puts it in a new list to return the updated vector.
   '''
-  n = len(vector)
-  p = len(vector)
+  n = len(vector03)
+  p = len(vector04)
+  inputStatus=True
   if n==p:
     x=[]
     #this for loop subtracts the two elements and then appends the difference into the new vector, x
-    for i in range(len(vector)):
-      x.append(vector[i]-vector[i])
+    for i in range(len(vector03)):
+      if ((type(vector03[i] and vector04[i]) != int) and (type(vector03[i] and vector04[i]) != float) and (type(vector03[i] and vector04[i]) !=complex)):
+        inputStatus = False
+        print("Invalid Input")
+  # If the input is valid the function continues to compute the dot product
+  if inputStatus == True:
+    x.append(vector03[i]-vector04[i])
     return x
   else:
     print("invalid input")
     return None
 
 def QR_factor(matrix):
-  A=[0]
-  Q=[]
-  R=[]
   if type(matrix) !=list:
     print ("invalid input")
     return None
   if len(matrix)==0:
     print ("invalid input")
     return None
-  x=0
   for i in range(len(matrix)):
     if type(matrix[i]) !=list:
       print ("invalid input")
@@ -94,7 +96,7 @@ def QR_factor(matrix):
     if len(matrix[i])==0:
       print ("invalid input")
       return None
-    for j in range(len(matrix[i])):
+    for j in range(len(matrix)):
       if type(matrix[i][j]) !=int:
         print ("invalid input")
         return None
@@ -104,3 +106,16 @@ def QR_factor(matrix):
       if type(matrix[i][j]) !=complex:
         print ("invalid input")
         return None
+  Q=[]
+  n = len(matrix)
+  R=[[0]*n for i in range(n)]
+  for i in range(len(matrix)):
+    R[i][i]= twoNorm(matrix)
+    matrix.append(matrix/R[i][i])
+    for j in range(len(i+1,n)):
+      R[i][j]=dot(R[i][i],matrix)
+      Matrix[j]=vecSubtract(R[i][j],Q[i])
+  return[Q,R]
+  print([Q,R])
+  
+matrix=[[1,0,1],[2,1,0]]
