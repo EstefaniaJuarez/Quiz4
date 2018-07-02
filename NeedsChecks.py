@@ -119,3 +119,17 @@ def QR_factor(matrix):
   print([Q,R])
   
 matrix=[[1,0,1],[2,1,0]]
+
+
+m=len(A[0])
+n=len(A)
+V=A
+R=[[0]*n for i in range(n)]
+Q=[[0]*m for i in range(n)]
+for i in range(n):
+  R[i][i]=twoNorm(V[i])
+  Q[i]=normalize(V[i])
+  for j in range(i+1,n)
+    R[j][i]=dot(Q[i],V[j])
+    temp=ScalarVectMulti(R[i][j],Q[i])
+    V[j]=vectorSubtract(V[j],temp)
