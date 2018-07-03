@@ -82,6 +82,17 @@ def vecSubtract(vector03,vector04):
     print("invalid input")
     return None
 
+def normalize(vector07):
+  '''
+  This function takes a vector and calculates the normalized vector.The norm of vector has been calculated in question 4 and is being referenced for this question. Then, the normalized vector is calculated by dividing each element in the specified vector by the norm using the infinity norm.  
+  '''
+  norm = twoNorm(vector07)
+  x = []
+  #This for loop divides each element of vector07 and divides it by the norm of vector07. It then appends the number to the new normalized vector, x.
+  for i in range(len(vector07)):
+    x.append(vector07[i]/norm)
+  return (x)
+
 def QR_factor(matrix):
   '''
   This function computes the Modified Gran-Schmidt of the given matrix. It utilizes the two norm to then normalize the vectors in matrix A, which becomes the Q vector. We then use the dot product function on the normalized vector and the second vector in the matrix. The last function we use is vector subtraction, which calculates each normalized vector in the Q matrix. The final result is the factorized matrix A into matrix Q and an upper triangular matrix R.
@@ -101,13 +112,7 @@ def QR_factor(matrix):
       print ("invalid input")
       return None
     for j in range(len(matrix)):
-      if type(matrix[i][j]) !=int:
-        print ("invalid input")
-        return None
-      if type(matrix[i][j]) !=float:
-        print ("invalid input")
-        return None
-      if type(matrix[i][j]) !=complex:
+      if type(matrix[i][j]) !=int and type(matrix[i][j]) != float and type(matrix[i][j]) !=complex:
         print ("invalid input")
         return None
   #We have defined these lengths as variables  to use throughout the function
@@ -119,7 +124,7 @@ def QR_factor(matrix):
   for i in range(n):
     #This for loop calculates the norm of the matrix and normalize the first vector
     R[i][i]=twoNorm(V[i])
-    Q[i]=(V[i]/R[i][i])
+    Q[i]=normalize(V[i])
     #This for loop normalizes the rest of the vectors in the matrix by the use of the dot product function, scalar multiplication, and vector subtraction.
     for j in range(i+1,n):
       R[j][i]=dot(Q[i],V[j])
